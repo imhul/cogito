@@ -158,16 +158,14 @@
     const data = Object.keys(ROWS[0]);
     const selectedEntriesElem = document.getElementById('selected-entries');
     const totalEntriesElem = document.getElementById('total-entries');
-
     const selectedEntriesText = document.createTextNode(selectedEntries);
     const totalEntriesText = document.createTextNode(ROWS.length);
+    const selectElems = $('select');
+    const authForm = document.getElementById('auth-form');
 
     $('.sidenav').sidenav();
-
     selectedEntriesElem.appendChild(selectedEntriesText);
     totalEntriesElem.appendChild(totalEntriesText);
-
-    const selectElems = $('select');
     selectElems.formSelect();
 
     selectElems[0].addEventListener('change', (event) => {
@@ -182,9 +180,14 @@
       }
     });
 
-    $('[data-bss-hover-animate]')
-      .mouseenter(() => { const elem = $(this); elem.addClass('animated ' + elem.attr('data-bss-hover-animate')) })
-      .mouseleave(() => { const elem = $(this); elem.removeClass('animated ' + elem.attr('data-bss-hover-animate')) });
+    authForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      console.info('submit event: ', event);
+    });
+
+    authForm.addEventListener('change', (event) => {
+      console.info('change event: ', event);
+    });
 
     function generateTableHead(table, data) {
       const thead = table.createTHead();
