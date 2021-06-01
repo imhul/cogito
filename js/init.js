@@ -162,23 +162,33 @@
     const totalEntriesText = document.createTextNode(ROWS.length);
     const selectElems = $('select');
     const authForm = document.getElementById('auth-form');
+    const refreshElem = document.getElementById('refresh');
 
     $('.sidenav').sidenav();
     selectedEntriesElem.appendChild(selectedEntriesText);
     totalEntriesElem.appendChild(totalEntriesText);
     selectElems.formSelect();
 
-    selectElems[0].addEventListener('change', (event) => {
+    const onRefresh = () => {
+      table.innerHTML = '';
+      generateTable(table, ROWS);
+      console.info('refreshed');
+    }
+
+    const selectElem = selectElems[0];
+
+    selectElem.addEventListener('change', (event) => {
       selectedEntriesElem.innerHTML = '';
       const newValue = event.target.value;
       if (selectedEntries !== newValue) {
-        selectedEntries = newValue; 
+        selectedEntries = newValue;
         const newSelectedEntriesText = document.createTextNode(selectedEntries);
         selectedEntriesElem.appendChild(newSelectedEntriesText);
-        table.innerHTML = '';
-        generateTable(table, ROWS);
+        onRefresh();
       }
     });
+
+    refreshElem.addEventListener('click', onRefresh());
 
     authForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -208,7 +218,7 @@
           row = table.insertRow();
           row.setAttribute("id", element.ID);
         }
-        
+
         for (key in element) {
           const cell = row.insertCell();
 
@@ -252,7 +262,7 @@
         }
       }
     };
-    
+
     generateTableHead(table, data);
     generateTable(table, ROWS);
   });
