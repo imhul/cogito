@@ -1,0 +1,44 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 1rem;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.actions-wrapper button {
+  margin-left: 1rem;
+}
+
+.actions {
+  display: flex;
+}
+
+.actions button {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  cursor: pointer;
+}
+
+.actions button .material-icons {
+  transition: color 0.3s;
+}
+
+.actions button .edit:hover {
+  color: #2196f3;
+}
+
+.actions button .remove:hover {
+  color: #f44336;
+}
+
+strong {
+  font-weight: bold;
+}
